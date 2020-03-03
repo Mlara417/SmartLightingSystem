@@ -8,8 +8,13 @@ abstract public class Room {
 		return name;
 	}
 	
+	public int getLightCount() {
+		return lightCount;
+	}
+	
 	public void addLights(int lightCount) {
 		System.out.println("You have added " + lightCount + " lights to the " + name + "." );
+		this.lightCount = lightCount;
 	}
 	
 	public String toString() {

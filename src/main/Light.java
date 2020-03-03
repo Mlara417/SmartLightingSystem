@@ -1,7 +1,7 @@
 package main;
 
 public class Light {
-	String roomName = "";
+	String roomName;
 
 	public Light(String roomName) {
 		this.roomName = roomName;

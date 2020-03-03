@@ -9,6 +9,8 @@ public class Main {
 		Room kitchen = home.createRoom("Kitchen", 2);
 		Room garage = home.createRoom("Garage", 4);
 
+		System.out.println(kitchen.getName());
+		
 		//command
 		RemoteControl remoteControl = new RemoteControl();
 		Light garageLight = new Light(garage.getName());
@@ -21,7 +23,15 @@ public class Main {
 				new LightOn(kitchenLight);
 		LightOff kitchenLightOff = 
 				new LightOff(kitchenLight);
-  
+		
+		//state
+		GarageDoor garagedoor = new GarageDoor();
+		//garagedoor.setState(garagedoor.up);
+		System.out.println(garagedoor.getState());
+		
+		if(garagedoor.state.toString().equalsIgnoreCase("Garage Door is down and landscape lights are off")) {
+			System.out.println("true");
+		}
 		
 		//Command Pattern
 		remoteControl.setCommand(0, garageLightOn, garageLightOff);
@@ -34,6 +44,8 @@ public class Main {
 		
 		//Factory Pattern
 		System.out.println("A " + kitchen.getName() + " has been created." );
+		
+		//State
 	}
 
 }

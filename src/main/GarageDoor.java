@@ -2,28 +2,46 @@ package main;
 
 public class GarageDoor {
 	String location;
+	State state;
+	
+	State up;
+	State down;
 
-	public GarageDoor(String location) {
-		this.location = location;
+	public GarageDoor() {
+		up = new GarageDoorUp(this);
+		down = new GarageDoorDown(this);
+		
+		state = down;
 	}
 
-	public void up() {
-		System.out.println(location + " garage Door is Up");
+	//initializing
+	public void setUp() {
+		state.GarageDoorUp();
 	}
 
-	public void down() {
-		System.out.println(location + " garage Door is Down");
+	public void setDown() {
+		state.GarageDoorDown();
 	}
 
-	public void stop() {
-		System.out.println(location + " garage Door is Stopped");
+	void setState(State state) {
+		this.state = state;
 	}
-
-	public void lightOn() {
-		System.out.println(location + " garage light is on");
+	
+	//return state values
+	public State getState() {
+		return state;
 	}
-
-	public void lightOff() {
-		System.out.println(location + " garage light is off");
+	public State getUp() {
+		return up;
 	}
+	public State getDown() {
+		return down;
+	}
+	
+	public String toString() {
+		StringBuffer result = new StringBuffer();
+		result.append(state + "\n");
+		return result.toString();
+	}
+	
 }
