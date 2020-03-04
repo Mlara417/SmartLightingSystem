@@ -45,7 +45,13 @@ public class Main {
 		//Factory Pattern
 		System.out.println("A " + kitchen.getName() + " has been created." );
 		
-		//State
+		//iteratory pattern 
+		ColorRepository colorRepository = new ColorRepository();
+		
+		for(Iterator iterator = colorRepository.getIterator(); iterator.hasNext();) {
+			String color = (String)iterator.next();
+			System.out.println("Color: " + color);
+		}
 	}
 
 }
