@@ -8,11 +8,17 @@ public class Main {
 		
 		Scanner scan = new Scanner(System.in);
 		
+		System.out.println("How many lights for your kitchen?");
+		int kitchenLights = scan.nextInt();
+		
+		System.out.println("How many lights for your garage?");
+		int garageLights = scan.nextInt();
+		
 		//factory
 		RoomFactory factory = new RoomFactory();
 		Home home = new Home(factory);
-		Room kitchen = home.createRoom("Kitchen", 2);
-		Room garage = home.createRoom("Garage", 4);
+		Room kitchen = home.createRoom("Kitchen", kitchenLights);
+		Room garage = home.createRoom("Garage", garageLights);
 		
 		//command
 		RemoteControl remoteControl = new RemoteControl();
@@ -37,6 +43,9 @@ public class Main {
 		remoteControl.setCommand(1, kitchenLightOn, kitchenLightOff);
 		
 		//garagedoor.setState(garagedoor.up);
+		
+		System.out.println("What is the garage door position?");
+		
 		
 		// using garage state to command lights on or off
 		if(garagedoor.getState().toString().equalsIgnoreCase("down")) {
