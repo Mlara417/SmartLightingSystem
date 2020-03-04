@@ -1,8 +1,12 @@
 package main;
 
+import java.util.Scanner; //import the scanner
+
 public class Main {
 
 	public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in);
 		
 		//factory
 		RoomFactory factory = new RoomFactory();
@@ -23,39 +27,36 @@ public class Main {
 		LightOff kitchenLightOff = 
 				new LightOff(kitchenLight);
 		
-		remoteControl.setCommand(0, garageLightOn, garageLightOff);
-		remoteControl.setCommand(1, kitchenLightOn, kitchenLightOff);
-		
 		//state
 		GarageDoor garagedoor = new GarageDoor();
-		//garagedoor.setState(garagedoor.up);
-		if(garagedoor.getState().toString().equalsIgnoreCase("down")) {
-			System.out.println("down");
-			remoteControl.onButtonWasPushed(0);
-			
-		} else if(garagedoor.getState().toString().equalsIgnoreCase("up")) {
-			System.out.println("up");
-			remoteControl.offButtonWasPushed(0);
-		}
-		
-		//Command Pattern
-
-		
-		
-		remoteControl.onButtonWasPushed(1);
-		remoteControl.offButtonWasPushed(1);
-		//End Of Command Pattern
-		
-		//Factory Pattern
-		System.out.println("A " + kitchen.getName() + " has been created." );
 		
 		//iteratory pattern 
 		ColorRepository colorRepository = new ColorRepository();
 		
+		remoteControl.setCommand(0, garageLightOn, garageLightOff);
+		remoteControl.setCommand(1, kitchenLightOn, kitchenLightOff);
+		
+		//garagedoor.setState(garagedoor.up);
+		
+		// using garage state to command lights on or off
+		if(garagedoor.getState().toString().equalsIgnoreCase("down")) {
+			System.out.println("down");
+			remoteControl.onButtonWasPushed(0);
+			remoteControl.onButtonWasPushed(1);
+			
+		} else if(garagedoor.getState().toString().equalsIgnoreCase("up")) {
+			System.out.println("up");
+			remoteControl.offButtonWasPushed(0);
+			remoteControl.offButtonWasPushed(1);
+		}		
+		
+		//choose a color question then output options
 		for(Iterator iterator = colorRepository.getIterator(); iterator.hasNext();) {
 			String color = (String)iterator.next();
-			System.out.println("Color: " + color);
+			System.out.println(color);
 		}
+		
+		//check color and call index based on user selection
 	}
 
 }
