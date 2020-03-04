@@ -3,13 +3,12 @@ package main;
 public class Main {
 
 	public static void main(String[] args) {
+		
 		//factory
 		RoomFactory factory = new RoomFactory();
 		Home home = new Home(factory);
 		Room kitchen = home.createRoom("Kitchen", 2);
 		Room garage = home.createRoom("Garage", 4);
-
-		System.out.println(kitchen.getName());
 		
 		//command
 		RemoteControl remoteControl = new RemoteControl();
@@ -24,20 +23,25 @@ public class Main {
 		LightOff kitchenLightOff = 
 				new LightOff(kitchenLight);
 		
+		remoteControl.setCommand(0, garageLightOn, garageLightOff);
+		remoteControl.setCommand(1, kitchenLightOn, kitchenLightOff);
+		
 		//state
 		GarageDoor garagedoor = new GarageDoor();
 		//garagedoor.setState(garagedoor.up);
-		System.out.println(garagedoor.getState());
-		
-		if(garagedoor.state.toString().equalsIgnoreCase("Garage Door is down and landscape lights are off")) {
-			System.out.println("true");
+		if(garagedoor.getState().toString().equalsIgnoreCase("down")) {
+			System.out.println("down");
+			remoteControl.onButtonWasPushed(0);
+			
+		} else if(garagedoor.getState().toString().equalsIgnoreCase("up")) {
+			System.out.println("up");
+			remoteControl.offButtonWasPushed(0);
 		}
 		
 		//Command Pattern
-		remoteControl.setCommand(0, garageLightOn, garageLightOff);
-		remoteControl.setCommand(1, kitchenLightOn, kitchenLightOff);
-		remoteControl.onButtonWasPushed(0);
-		remoteControl.offButtonWasPushed(0);
+
+		
+		
 		remoteControl.onButtonWasPushed(1);
 		remoteControl.offButtonWasPushed(1);
 		//End Of Command Pattern

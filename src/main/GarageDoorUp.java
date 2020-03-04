@@ -20,6 +20,6 @@ public class GarageDoorUp implements State {
 	}
 	
 	public String toString() {
-		return "Garage door is up and landscape lights are on.";
+		return "Up";
 	}
 }
