@@ -8,64 +8,121 @@ public class Main {
 		
 		Scanner scan = new Scanner(System.in);
 		
+		int kitchenLights;
+		int garageLights;
+		String colorOptions;
+		String lightColor;
+		String garageDoorPosition;
+		
+		RoomFactory factory;
+		Home home;
+		Room kitchen;
+		Room garage;
+		Iterator iterator;
+		RemoteControl remoteControl;
+		Light garageLight;
+		Light kitchenLight;
+		LightOn garageLightOn;
+		LightOff garageLightOff;
+		LightOn kitchenLightOn;
+		LightOff kitchenLightOff;
+		GarageDoor garagedoor;
+		
+		
+		
+		//iterator pattern 
+		ColorRepository colorRepository = new ColorRepository();
+		
 		System.out.println("How many lights for your kitchen?");
-		int kitchenLights = scan.nextInt();
+		kitchenLights = scan.nextInt();
+		System.out.println("");
 		
 		System.out.println("How many lights for your garage?");
-		int garageLights = scan.nextInt();
+		garageLights = scan.nextInt();
+		System.out.println("");
+		
+		//choose a color question then output options
+		System.out.println("What color would you like the lights to be?");
+		for(iterator = colorRepository.getIterator(); iterator.hasNext();) {
+			colorOptions = (String)iterator.next();
+			if(iterator.hasNext() == true) {
+				System.out.print(colorOptions + ",");
+			} else {
+				System.out.print(colorOptions+".");
+				System.out.println("");
+				
+			}
+			 
+		}
+		lightColor = scan.next();
+		lightColor.toLowerCase();
+		System.out.println("");
 		
 		//factory
-		RoomFactory factory = new RoomFactory();
-		Home home = new Home(factory);
-		Room kitchen = home.createRoom("Kitchen", kitchenLights);
-		Room garage = home.createRoom("Garage", garageLights);
+		factory = new RoomFactory();
+		home = new Home(factory);
+		kitchen = home.createRoom("Kitchen", kitchenLights);
+		garage = home.createRoom("Garage", garageLights);
+		
+		//check color and call index based on user selection
+		switch(lightColor) {
+		case "red":
+			System.out.println("Your lights are red");
+			break;
+		case "yellow":
+			System.out.println("Your lights are yellow");
+			break;
+		case "green":
+			System.out.println("Your lights are green");
+			break;
+		}
+	
+		System.out.println("");
 		
 		//command
-		RemoteControl remoteControl = new RemoteControl();
-		Light garageLight = new Light(garage.getName());
-		Light kitchenLight = new Light(kitchen.getName());
-		LightOn garageLightOn = 
+		remoteControl = new RemoteControl();
+		garageLight = new Light(garage.getName());
+		kitchenLight = new Light(kitchen.getName());
+		garageLightOn = 
 				new LightOn(garageLight);
-		LightOff garageLightOff = 
+		garageLightOff = 
 				new LightOff(garageLight);
-		LightOn kitchenLightOn = 
+		kitchenLightOn = 
 				new LightOn(kitchenLight);
-		LightOff kitchenLightOff = 
+		kitchenLightOff = 
 				new LightOff(kitchenLight);
 		
 		//state
-		GarageDoor garagedoor = new GarageDoor();
-		
-		//iteratory pattern 
-		ColorRepository colorRepository = new ColorRepository();
+		garagedoor = new GarageDoor();
 		
 		remoteControl.setCommand(0, garageLightOn, garageLightOff);
 		remoteControl.setCommand(1, kitchenLightOn, kitchenLightOff);
 		
-		//garagedoor.setState(garagedoor.up);
-		
+		//setting initial state
 		System.out.println("What is the garage door position?");
+		garageDoorPosition = scan.next();
+		garageDoorPosition.toLowerCase();
 		
+		if(garageDoorPosition.equals("up")) {
+			garagedoor.setState(garagedoor.up);
+		} else if (garageDoorPosition.equals("down")) {
+			garagedoor.setState(garagedoor.down);
+		} else {
+			System.out.println("Invalid input");
+		}
+		System.out.println("");
 		
 		// using garage state to command lights on or off
 		if(garagedoor.getState().toString().equalsIgnoreCase("down")) {
-			System.out.println("down");
 			remoteControl.onButtonWasPushed(0);
 			remoteControl.onButtonWasPushed(1);
 			
 		} else if(garagedoor.getState().toString().equalsIgnoreCase("up")) {
-			System.out.println("up");
 			remoteControl.offButtonWasPushed(0);
 			remoteControl.offButtonWasPushed(1);
-		}		
+		}	
 		
-		//choose a color question then output options
-		for(Iterator iterator = colorRepository.getIterator(); iterator.hasNext();) {
-			String color = (String)iterator.next();
-			System.out.println(color);
-		}
-		
-		//check color and call index based on user selection
+		System.out.println("");
 	}
 
 }
