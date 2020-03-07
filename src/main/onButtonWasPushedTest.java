@@ -1,11 +1,13 @@
 package main;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import main.*;
-
 import org.junit.jupiter.api.Test;
 
-public class offButtonWasPushed {
+@RunWith(JUnitPlatform.class)
+public class onButtonWasPushedTest {
 	RoomFactory factory = new RoomFactory();
 	Home home = new Home(factory);
 	Room garage = home.createRoom("Garage", 1);
@@ -18,7 +20,7 @@ public class offButtonWasPushed {
 	
 	@Test
 	public void test() {
-		assertTrue(remoteControl.offButtonWasPushed(0));
+		assertTrue(remoteControl.onButtonWasPushed(0));
 	}
 
 }
