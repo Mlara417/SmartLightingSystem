@@ -40,7 +40,7 @@ public class GarageDoor {
 	
 	public String toString() {
 		StringBuffer result = new StringBuffer();
-		result.append(state + "\n");
+		result.append(state );
 		return result.toString();
 	}
 	

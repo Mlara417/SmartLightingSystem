@@ -21,12 +21,14 @@ public class RemoteControl {
 		return true;
 	}
  
-	public void onButtonWasPushed(int slot) {
+	public boolean onButtonWasPushed(int slot) {
 		onCommands[slot].execute();
+		return true;
 	}
  
-	public void offButtonWasPushed(int slot) {
+	public boolean offButtonWasPushed(int slot) {
 		offCommands[slot].execute();
+		return true;
 	}
   
 	public String toString() {
