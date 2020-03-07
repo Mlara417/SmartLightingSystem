@@ -1,13 +1,14 @@
 package main;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import main.ColorRepository;
 
-@RunWith(JUnitPlatform.class)
 public class getIteratorTest {
 
 	@Test

@@ -1,12 +1,13 @@
 package main;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 import main.*;
-import org.junit.jupiter.api.Test;
 
-@RunWith(JUnitPlatform.class)
 public class setStateTest {
 	GarageDoor garagedoor = new GarageDoor();
 	String result;

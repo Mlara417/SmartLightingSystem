@@ -1,15 +1,14 @@
 package main;
 
-import static org.junit.jupiter.api.Assertions.*;
 import main.*;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
-@RunWith(JUnitPlatform.class)
 public class setCommandTest {
 	RoomFactory factory = new RoomFactory();
 	Home home = new Home(factory);
