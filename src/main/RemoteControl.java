@@ -15,9 +15,10 @@ public class RemoteControl {
 		}
 	}
   
-	public void setCommand(int slot, Command onCommand, Command offCommand) {
+	public boolean setCommand(int slot, Command onCommand, Command offCommand) {
 		onCommands[slot] = onCommand;
 		offCommands[slot] = offCommand;
+		return true;
 	}
  
 	public void onButtonWasPushed(int slot) {
